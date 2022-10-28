@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'Charts/linechart.dart';
 import 'Charts/barchart.dart';
+import 'colors.dart' as color;
 
 var items = [1, 2, 3, 4];
 
@@ -173,6 +174,25 @@ class Dashboard extends StatelessWidget {
           ],
         ),
       ]),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: color.Colors.deepGreenColor,
+        onPressed: () {
+          //code to execute on button press
+        },
+        child: Icon(
+          Icons.add,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: color.Colors.greenColor,
+        unselectedItemColor: color.Colors.disableColor,
+        showUnselectedLabels: true,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
+        ],
+      ),
     );
   }
 }
