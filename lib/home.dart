@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:expense_project/colors.dart' as color;
 import 'package:expense_project/models/transaction.dart';
 
+import 'package:flutter/material.dart';
+
+
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  String name;
+  String income;
+  HomePage({Key? key ,required this.name, required this.income}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -25,19 +30,21 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: color.Colors.greenColor,
-        unselectedItemColor: color.Colors.disableColor,
+              selectedItemColor: color.Colors.greenColor,
+             unselectedItemColor: color.Colors.disableColor,
         showUnselectedLabels: true,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: 'Chart'),
         ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children: const [
-              TopSection(),
+            children:  [
+              TopSection(
+                  name: widget.name, income: widget.income,
+              ),
               // ContactSection(),
               SizedBox(
                 height: 30,
@@ -53,7 +60,10 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
 }
+
+
 
 class TransactionSection extends StatelessWidget {
   const TransactionSection({Key? key}) : super(key: key);
@@ -61,7 +71,6 @@ class TransactionSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textStyle = Theme.of(context).textTheme;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
@@ -91,19 +100,22 @@ class TransactionSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10)),
             child: ListView.builder(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                itemCount: transactions().length,
+                          itemCount: transactions().length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Container(
+                       Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              color: transactions()[index].color.withOpacity(0.2),
+                             color: transactions()[index].color.withOpacity(0.2),
                               shape: BoxShape.circle),
-                          child: Icon(transactions()[index].iconData, color: transactions()[index].color, size: 17,),
+                          child:
+                          Icon(
+                            transactions()[index].iconData, color: transactions()[index].color, size: 17,
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
@@ -112,12 +124,12 @@ class TransactionSection extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(transactions()[index].title, style: textStyle.bodyText1,),
-                              Text(transactions()[index].date, style: textStyle.subtitle1,),
+                                                     Text(transactions()[index].title, style: textStyle.bodyText1,),
+                                                     Text(transactions()[index].date, style: textStyle.subtitle1,),
                             ],
                           ),
                         ),
-                        Text(transactions()[index].amount, style: textStyle.bodyText2,),
+                                        Text(transactions()[index].amount, style: textStyle.bodyText2,),
                       ],
                     ),
                   );
@@ -130,7 +142,10 @@ class TransactionSection extends StatelessWidget {
 }
 
 class TopSection extends StatelessWidget {
-  const TopSection({Key? key}) : super(key: key);
+  String name;
+  String income;
+
+  TopSection({Key? key, required this.name, required this.income}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +192,7 @@ class TopSection extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Text('XXXXXXXXXX', style: textStyle.headline1),
+                    child: Text('$name', style: textStyle.headline1),
                   ),
                 ],
               )
@@ -209,7 +224,7 @@ class TopSection extends StatelessWidget {
                             style: textStyle.headline1,
                           ),
                           Text(
-                            '\$11,548.00',
+                            '$income',
                             style: textStyle.headline4,
                           )
                         ],
