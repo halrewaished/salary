@@ -1,3 +1,4 @@
+import 'package:expense_project/home.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'Charts/linechart.dart';
@@ -27,8 +28,8 @@ class Dashboard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 146,
-                  width: 99,
+                  height: 80,
+                  width: 40,
                 ),
                 ElevatedButton(
                     style: ButtonStyle(
@@ -40,7 +41,7 @@ class Dashboard extends StatelessWidget {
                     onPressed: null,
                     child: Text("Day")),
                 SizedBox(
-                  width: 62,
+                  width: 30,
                 ),
                 ElevatedButton(
                     style: ButtonStyle(
@@ -52,7 +53,7 @@ class Dashboard extends StatelessWidget {
                     onPressed: null,
                     child: Text("Week")),
                 SizedBox(
-                  width: 62,
+                  width: 30,
                 ),
                 ElevatedButton(
                     style: ButtonStyle(
@@ -64,19 +65,19 @@ class Dashboard extends StatelessWidget {
                     onPressed: null,
                     child: Text("Month")),
                 SizedBox(
-                  width: 62,
+                  width: 30,
                 ),
               ],
             ),
             SizedBox(
               height: 313,
-              width: 382,
+              width: 383,
               child: Card(
                 child: LineChart(mainData()),
               ),
             ),
             SizedBox(
-              height: 86,
+              height: 56,
             ),
             Align(
               alignment: Alignment.centerLeft,
@@ -86,6 +87,9 @@ class Dashboard extends StatelessWidget {
                   style: TextStyle(fontSize: 18),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 16,
             ),
             Expanded(
               child: ListView.builder(
@@ -133,7 +137,6 @@ class Dashboard extends StatelessWidget {
                     ),
                     SizedBox(width: 88),
                     SizedBox(
-                      height: 194,
                       width: 194,
                       child: BarChart(
                         bar(),
@@ -188,6 +191,14 @@ class Dashboard extends StatelessWidget {
         selectedItemColor: color.Colors.greenColor,
         unselectedItemColor: color.Colors.disableColor,
         showUnselectedLabels: true,
+        onTap: ((value) {
+          switch (value) {
+            case 0:
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              break;
+          }
+        }),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),

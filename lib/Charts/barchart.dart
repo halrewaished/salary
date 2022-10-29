@@ -7,56 +7,56 @@ BarChartData bar() {
     borderData: borderData,
     barGroups: barGroups,
     gridData: FlGridData(show: false),
-    alignment: BarChartAlignment.spaceAround,
+    //alignment: BarChartAlignment.spaceAround,
     maxY: 20,
   );
 }
 
-// Widget getTitles(double value, TitleMeta meta) {
-//   const style = TextStyle(
-//     color: Color(0xff7589a2),
-//     fontWeight: FontWeight.bold,
-//     fontSize: 14,
-//   );
-//   String text;
-//   switch (value.toInt()) {
-//     case 0:
-//       text = 'Jan';
-//       break;
-//     case 1:
-//       text = 'Feb';
-//       break;
-//     case 2:
-//       text = 'Mar';
-//       break;
-//     case 3:
-//       text = 'Apr';
-//       break;
-//     case 4:
-//       text = 'May';
-//       break;
-//     case 5:
-//       text = 'Jun';
-//       break;
-//     case 6:
-//       text = 'Jul';
-//       break;
-//     default:
-//       text = '';
-//       break;
-//   }
-//   return SideTitleWidget(
-//     axisSide: meta.axisSide,
-//     space: 0,
-//     child: Text(text, style: style),
-//   );
-// }
+Widget getTitles(double value, TitleMeta meta) {
+  const style = TextStyle(
+    color: Color(0xff7589a2),
+    fontWeight: FontWeight.bold,
+    fontSize: 14,
+  );
+  String text;
+  switch (value.toInt()) {
+    case 0:
+      text = 'Jan';
+      break;
+    case 1:
+      text = 'Feb';
+      break;
+    case 2:
+      text = 'Mar';
+      break;
+    case 3:
+      text = 'Apr';
+      break;
+    case 4:
+      text = 'May';
+      break;
+    case 5:
+      text = 'Jun';
+      break;
+    case 6:
+      text = 'Jul';
+      break;
+    default:
+      text = '';
+      break;
+  }
+  return SideTitleWidget(
+    axisSide: meta.axisSide,
+    //space: 0,
+    child: Text(text, style: style),
+  );
+}
 
 FlTitlesData get titlesData => FlTitlesData(
       show: true,
       bottomTitles: AxisTitles(
         sideTitles: SideTitles(
-          showTitles: true,
+          showTitles: false,
           reservedSize: 30,
         ),
       ),
@@ -89,11 +89,10 @@ List<BarChartGroupData> get barGroups => [
         x: 0,
         barRods: [
           BarChartRodData(
-            toY: 8,
+            toY: 4,
             gradient: _barsGradient,
           )
         ],
-        showingTooltipIndicators: [0],
       ),
       BarChartGroupData(
         x: 1,
@@ -112,7 +111,6 @@ List<BarChartGroupData> get barGroups => [
             gradient: _barsGradient,
           )
         ],
-        showingTooltipIndicators: [0],
       ),
       BarChartGroupData(
         x: 3,
@@ -122,7 +120,6 @@ List<BarChartGroupData> get barGroups => [
             gradient: _barsGradient,
           )
         ],
-        showingTooltipIndicators: [0],
       ),
       BarChartGroupData(
         x: 4,
@@ -132,7 +129,6 @@ List<BarChartGroupData> get barGroups => [
             gradient: _barsGradient,
           )
         ],
-        showingTooltipIndicators: [0],
       ),
       BarChartGroupData(
         x: 5,
@@ -142,7 +138,6 @@ List<BarChartGroupData> get barGroups => [
             gradient: _barsGradient,
           )
         ],
-        showingTooltipIndicators: [0],
       ),
       BarChartGroupData(
         x: 6,
@@ -152,6 +147,5 @@ List<BarChartGroupData> get barGroups => [
             gradient: _barsGradient,
           )
         ],
-        showingTooltipIndicators: [0],
       ),
     ];

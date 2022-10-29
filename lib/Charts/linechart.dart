@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
+var testing = {4.0: 3.0};
+Map<double, double> Testing = {1.0: 5.0};
+
 List<Color> gradientColors = [
   const Color(0xff42966E),
-  const Color(0xff76A08C),
+  const Color(0xff42966E),
 ];
 
 LineChartData mainData() {
@@ -15,13 +18,13 @@ LineChartData mainData() {
       verticalInterval: 1,
       getDrawingHorizontalLine: (value) {
         return FlLine(
-          color: const Color(0xff37434d),
+          color: Color.fromARGB(255, 252, 252, 252),
           strokeWidth: 1,
         );
       },
       getDrawingVerticalLine: (value) {
         return FlLine(
-          color: const Color(0xff37434d),
+          color: Color.fromARGB(255, 255, 255, 255),
           strokeWidth: 1,
         );
       },
@@ -44,15 +47,14 @@ LineChartData mainData() {
       ),
       leftTitles: AxisTitles(
         sideTitles: SideTitles(
-          showTitles: true,
+          showTitles: false,
           interval: 1,
-          getTitlesWidget: leftTitleWidgets,
           reservedSize: 42,
         ),
       ),
     ),
     borderData: FlBorderData(
-      show: true,
+      show: false,
       border: Border.all(color: const Color(0xff37434d)),
     ),
     minX: 0,
@@ -61,20 +63,19 @@ LineChartData mainData() {
     maxY: 6,
     lineBarsData: [
       LineChartBarData(
-        spots: const [
-          FlSpot(0, 3),
-          FlSpot(2.6, 2),
-          FlSpot(4.9, 5),
-          FlSpot(6.8, 3.1),
-          FlSpot(8, 4),
-          FlSpot(9.5, 3),
-          FlSpot(11, 4),
+        spots: [
+          FlSpot(0, 1),
+          FlSpot(Testing.keys.first, Testing.values.first),
+          FlSpot(2, 3),
+          FlSpot(6, 4),
+          FlSpot(9, 2),
+          FlSpot(11, 5),
         ],
         isCurved: true,
         gradient: LinearGradient(
           colors: gradientColors,
         ),
-        barWidth: 5,
+        barWidth: 0,
         isStrokeCapRound: true,
         dotData: FlDotData(
           show: false,
@@ -83,7 +84,7 @@ LineChartData mainData() {
           show: true,
           gradient: LinearGradient(
             colors:
-                gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+                gradientColors.map((color) => color.withOpacity(1)).toList(),
           ),
         ),
       ),
@@ -94,8 +95,7 @@ LineChartData mainData() {
 Widget bottomTitleWidgets(double value, TitleMeta meta) {
   const style = TextStyle(
     color: Color(0xff68737d),
-    fontWeight: FontWeight.bold,
-    fontSize: 16,
+    fontSize: 11,
   );
   Widget text;
   switch (value.toInt()) {
@@ -119,26 +119,26 @@ Widget bottomTitleWidgets(double value, TitleMeta meta) {
   );
 }
 
-Widget leftTitleWidgets(double value, TitleMeta meta) {
-  const style = TextStyle(
-    color: Color(0xff67727d),
-    fontWeight: FontWeight.bold,
-    fontSize: 15,
-  );
-  String text;
-  switch (value.toInt()) {
-    case 1:
-      text = '10K';
-      break;
-    case 3:
-      text = '30k';
-      break;
-    case 5:
-      text = '50k';
-      break;
-    default:
-      return Container();
-  }
+// Widget leftTitleWidgets(double value, TitleMeta meta) {
+//   const style = TextStyle(
+//     color: Color(0xff67727d),
+//     fontWeight: FontWeight.bold,
+//     fontSize: 15,
+//   );
+//   String text;
+//   switch (value.toInt()) {
+//     case 1:
+//       text = '10K';
+//       break;
+//     case 3:
+//       text = '30k';
+//       break;
+//     case 5:
+//       text = '50k';
+//       break;
+//     default:
+//       return Container();
+//   }
 
-  return Text(text, style: style, textAlign: TextAlign.left);
-}
+//   return Text(text, style: style, textAlign: TextAlign.left);
+// }
