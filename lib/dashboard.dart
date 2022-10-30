@@ -1,11 +1,12 @@
 import 'package:expense_project/home.dart';
+import 'package:expense_project/my_flutter_app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'Charts/linechart.dart';
 import 'Charts/barchart.dart';
 import 'colors.dart' as color;
 
-var items = [1, 2, 3, 4];
+var testmap = {"Food": 222, "Coffe": 337, "Entertainment": 988};
 
 class Dashboard extends StatelessWidget {
   @override
@@ -38,7 +39,7 @@ class Dashboard extends StatelessWidget {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     side: BorderSide(color: Colors.green)))),
-                    onPressed: null,
+                    onPressed: () {},
                     child: Text("Day")),
                 SizedBox(
                   width: 30,
@@ -50,7 +51,7 @@ class Dashboard extends StatelessWidget {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     side: BorderSide(color: Colors.green)))),
-                    onPressed: null,
+                    onPressed: (() {}),
                     child: Text("Week")),
                 SizedBox(
                   width: 30,
@@ -62,7 +63,7 @@ class Dashboard extends StatelessWidget {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     side: BorderSide(color: Colors.green)))),
-                    onPressed: null,
+                    onPressed: () {},
                     child: Text("Month")),
                 SizedBox(
                   width: 30,
@@ -98,15 +99,30 @@ class Dashboard extends StatelessWidget {
                   return Column(
                     children: [
                       Card(
-                        color: Colors.white,
-                        child: ListTile(
-                          title: Text(items[index].toString()),
-                        ),
-                      )
+                          color: Colors.white,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                flex: 1,
+                                fit: FlexFit.tight,
+                                child: ListTile(
+                                  title: Text(
+                                    testmap.keys.elementAt(index).toString(),
+                                  ),
+                                  subtitle: Text("12-12-2022"),
+                                  leading: Icon(Icons.coffee),
+                                  trailing: Text(testmap.values
+                                      .elementAt(index)
+                                      .toString()),
+                                ),
+                              ),
+                            ],
+                          ))
                     ],
                   );
                 }),
-                itemCount: items.length,
+                itemCount: testmap.length,
               ),
             ),
           ],
@@ -131,7 +147,7 @@ class Dashboard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "122K",
+                      "120K",
                       style:
                           TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
                     ),
@@ -159,16 +175,31 @@ class Dashboard extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: items.length,
+                itemCount: testmap.length,
                 itemBuilder: ((context, index) {
                   return Column(
                     children: [
                       Card(
-                        color: Colors.white,
-                        child: ListTile(
-                          title: Text(items[index].toString()),
-                        ),
-                      )
+                          color: Colors.white,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                flex: 1,
+                                fit: FlexFit.tight,
+                                child: ListTile(
+                                  title: Text(
+                                    testmap.keys.elementAt(index).toString(),
+                                  ),
+                                  subtitle: Text("12-03-2022"),
+                                  leading: Icon(Icons.coffee),
+                                  trailing: Text(testmap.values
+                                      .elementAt(index)
+                                      .toString()),
+                                ),
+                              ),
+                            ],
+                          )),
                     ],
                   );
                 }),

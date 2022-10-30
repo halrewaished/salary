@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           indicatorColor: Colors.green,
           appBarTheme: AppBarTheme(color: const Color(0xffFFFFFF)),
-          // primarySwatch: Colors.green,
+          primarySwatch: Colors.green,
           fontFamily: 'Inter',
           textTheme: TextTheme(
             headline1: const TextStyle(
